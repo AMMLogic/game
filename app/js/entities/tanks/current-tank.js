@@ -16,6 +16,8 @@ angular.module('app').factory('CurrentTank', function(Entity, Bullet, Point) {
         this.entity.class = 'ourTank';
 
         this.gameEngine = gameEngine;
+
+        this.tankLevel = 1;
     }
 
     CurrentTank.prototype.fire = function() {
@@ -45,6 +47,10 @@ angular.module('app').factory('CurrentTank', function(Entity, Bullet, Point) {
 
     CurrentTank.prototype.tick = function() {
         this.updateSpeed();
+        if (this.keyMap.space) {
+            this.fire();
+            this.keyMap.space = false;
+        }
     };
 
     CurrentTank.prototype.updateSpeed = function() {
