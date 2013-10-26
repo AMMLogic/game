@@ -70,19 +70,19 @@ angular.module('app').factory('GameEngine', function(CurrentTank, AiTank, Entity
                 return;
             }
 
-            if (self.isTankCollideTank(newPoint, tankIndex)) {
+            if (self.isTankCollideTank(newPoint, tankIndex) !== null) {
                 return;
             }
 
-            if (self.isTankCollideTank(newPoint.add(Entity.SIZE - 1, 0), tankIndex)) {
+            if (self.isTankCollideTank(newPoint.add(Entity.SIZE - 1, 0), tankIndex) !== null) {
                 return;
             }
 
-            if (self.isTankCollideTank(newPoint.add(0, Entity.SIZE - 1), tankIndex)) {
+            if (self.isTankCollideTank(newPoint.add(0, Entity.SIZE - 1), tankIndex) !== null) {
                 return;
             }
 
-            if (self.isTankCollideTank(newPoint.add(Entity.SIZE - 1, Entity.SIZE - 1), tankIndex)) {
+            if (self.isTankCollideTank(newPoint.add(Entity.SIZE - 1, Entity.SIZE - 1), tankIndex) !== null) {
                 return;
             }
 
@@ -100,7 +100,7 @@ angular.module('app').factory('GameEngine', function(CurrentTank, AiTank, Entity
             }
 
             var tank = self.isTankCollideTank(newPoint);
-            if (tank) {
+            if (tank !== null) {
                 self.tanks.splice(tank, 1);
                 self.bullets.splice(bulletIndex, 1);
                 return;
