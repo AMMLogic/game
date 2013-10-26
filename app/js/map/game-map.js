@@ -19,20 +19,22 @@ angular.module('app').factory('GameMap', function(Block, Point) {
     }
 
     GameMap.LEVEL1 = [
-        [true,,,,,,,,,true],
-        [,,true,true,,,,,,true],
-        [true,,,,,,,,,true],
-        [true,,,,,,,,,true],
+        [true, true, true, true, true, true, true, true, true, true],
+        [true,,true,true,,,,,,true],
         [true,,,,,,,,,true],
         [true,,,,,,,,,true],
         [true,,,,,,,,,true],
         [true,,,,,,,,,true],
         [true,,,,,,,,,true],
-        [true,,,,,,,,,true]
+        [true,,,,,,,,,true],
+        [true,,,,,,,,,true],
+        [true, true, true, true, true, true, true, true, true, true]
     ];
 
     GameMap.prototype.getBlock = function(point) {
-
+        var x = Math.floor(point.x/Block.SIZE);
+        var y = Math.floor(point.y/Block.SIZE);
+        return this.blocks[y][x];
     };
 
     GameMap.prototype.getBlocks = function() {
