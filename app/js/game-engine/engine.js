@@ -13,7 +13,7 @@ angular.module('app').factory('GameEngine', function(Tank, Point) {
 
     GameEngine.prototype.init = function() {
         this.tanks.push(new Tank( new Point(0, 0) ));
-    }git s
+    }
 
     return GameEngine;
 })
