@@ -6,6 +6,6 @@
  */
 
 angular.module('app').controller('MapCtrl', function($scope, GameMap) {
-    var map = new GameMap();
-    $scope.blockRows = map.getMap();
+    var map = $scope.gameEngine.gameMap;
+    $scope.blockRows = map.getBlocks();
 });

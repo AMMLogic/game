@@ -4,15 +4,15 @@
 
 angular.module('app').factory('GameMap', function() {
     function GameMap() {
-        this.map = [[{}], [{}]];
+        this.blocks = [[{}], [{}]];
     }
 
     GameMap.prototype.getBlock = function(point) {
 
     };
 
-    GameMap.prototype.getMap = function() {
-        return this.map;
+    GameMap.prototype.getBlocks = function() {
+        return this.blocks;
     };
 
     return GameMap;
