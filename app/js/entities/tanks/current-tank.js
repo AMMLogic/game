@@ -47,24 +47,19 @@ angular.module('app').factory('CurrentTank', function(Entity, Bullet) {
 
         switch (this.keyMap.left +'|'+ this.keyMap.up +'|'+ this.keyMap.right +'|'+ this.keyMap.down) {
             case false +'|'+ false +'|'+ false +'|'+ false:
-                this.entity.speed.x = 0;
-                this.entity.speed.y = 0;
+                this.entity.changeSpeed(0, 0);
                 break;
             case true +'|'+ false +'|'+ false +'|'+ false:
-                this.entity.speed.x = -1;
-                this.entity.speed.y = 0;
+                this.entity.changeSpeed(-1, 0);
                 break;
             case false +'|'+ true +'|'+ false +'|'+ false:
-                this.entity.speed.x = 0;
-                this.entity.speed.y = -1;
+                this.entity.changeSpeed(0, -1);
                 break;
             case false +'|'+ false +'|'+ true +'|'+ false:
-                this.entity.speed.x = 0;
-                this.entity.speed.y = 1;
+                this.entity.changeSpeed(0, 1);
                 break;
             case false +'|'+ false +'|'+ false +'|'+ true:
-                this.entity.speed.x = 1;
-                this.entity.speed.y = 0;
+                this.entity.changeSpeed(1, 0);
                 break;
         }
 
