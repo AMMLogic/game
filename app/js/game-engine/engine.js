@@ -89,6 +89,10 @@ angular.module('app').factory('GameEngine', function(CurrentTank, AiTank, Entity
             tank.point.x = newPoint.x;
             tank.point.y = newPoint.y;
         });
+
+        _.each(this.tickObjects, function(obj) {
+            obj.tick();
+        })
     };
 
     GameEngine.prototype.isTankCollideWall = function(point) {
