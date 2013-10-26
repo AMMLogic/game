@@ -30,7 +30,7 @@ angular.module('app').factory('GameEngine', function(CurrentTank, AiTank, Entity
         entity = new Entity( new Point(30, 90) );
         entity.changeSpeed(1, 0);
 
-        this.currentTank = new CurrentTank(entity, this.keyMap);
+        this.currentTank = new CurrentTank(entity, this.keyMap, this);
 
 
         entity = new Entity( new Point(120, 90) );
