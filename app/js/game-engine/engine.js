@@ -13,6 +13,8 @@ angular.module('app').factory('GameEngine', function(Tank, Point, $window, $root
         this.currentTank = null;
 
         this.intervalId = null;
+
+        this.tickObjects = [];
     }
 
     GameEngine.TICK_INTERVAL = 34;
@@ -20,8 +22,11 @@ angular.module('app').factory('GameEngine', function(Tank, Point, $window, $root
     GameEngine.prototype.init = function() {
         var self = this;
 
-        this.currentTank = new Tank( new Point(30, 30) );
+        this.currentTank = new Tank( new Point(30, 90) );
+        this.currentTank.speed.x = 1;
+
         this.tanks.push(this.currentTank);
+        this.tanks.push(new Tank( new Point(120, 90) ));
 
         this.intervalId = $window.setInterval(function() {
             $rootScope.$apply(function() {
@@ -33,22 +38,30 @@ angular.module('app').factory('GameEngine', function(Tank, Point, $window, $root
     GameEngine.prototype.tick = function() {
         var self = this;
 
-        _.each(this.tanks, function(tank) {
+        _.each(this.tanks, function(tank, tankIndex) {
             var newPoint = tank.point.add(tank.speed.x, tank.speed.y);
 
-            if (!self.gameMap.getBlock(newPoint).canMoveThroughIt()) {
+            if (newPoint.equals(tank.point)) {
                 return;
             }
 
-            if (!self.gameMap.getBlock(newPoint.add(Tank.SIZE - 1, 0)).canMoveThroughIt()) {
+            if (self.isTankCollideWall(newPoint)) {
                 return;
             }
 
-            if (!self.gameMap.getBlock(newPoint.add(0, Tank.SIZE - 1)).canMoveThroughIt()) {
+            if (self.isTankCollideTank(newPoint, tankIndex)) {
                 return;
             }
 
-            if (!self.gameMap.getBlock(newPoint.add(Tank.SIZE - 1, Tank.SIZE - 1)).canMoveThroughIt()) {
+            if (self.isTankCollideTank(newPoint.add(Tank.SIZE - 1, 0), tankIndex)) {
+                return;
+            }
+
+            if (self.isTankCollideTank(newPoint.add(0, Tank.SIZE - 1), tankIndex)) {
+                return;
+            }
+
+            if (self.isTankCollideTank(newPoint.add(Tank.SIZE - 1, Tank.SIZE - 1), tankIndex)) {
                 return;
             }
 
@@ -56,6 +69,49 @@ angular.module('app').factory('GameEngine', function(Tank, Point, $window, $root
             tank.point.y = newPoint.y;
         });
     };
+
+    GameEngine.prototype.isTankCollideWall = function(point) {
+        if (!this.gameMap.getBlock(point).canMoveThroughIt()) {
+            return true;
+        }
+
+        if (!this.gameMap.getBlock(point.add(Tank.SIZE - 1, 0)).canMoveThroughIt()) {
+            return true;
+        }
+
+        if (!this.gameMap.getBlock(point.add(0, Tank.SIZE - 1)).canMoveThroughIt()) {
+            return true;
+        }
+
+        if (!this.gameMap.getBlock(point.add(Tank.SIZE - 1, Tank.SIZE - 1)).canMoveThroughIt()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    GameEngine.prototype.isTankCollideTank = function(point, skipTankIndex) {
+        var self = this;
+
+        var result = false;
+
+        _.each(self.tanks, function(tank, tankIndex) {
+            if (tankIndex === skipTankIndex) {
+                return;
+            }
+
+            var topLeft = tank.point;
+            var bottomRight = tank.point.add(Tank.SIZE - 1, Tank.SIZE - 1);
+
+            if (point.x < topLeft.x || point.y < topLeft.y || point.x > bottomRight.x || point.y > bottomRight.y) {
+                return;
+            }
+
+            result = true;
+        });
+
+        return result;
+    }
 
     return GameEngine;
 })

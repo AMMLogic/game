@@ -20,5 +20,9 @@ angular.module('app').factory('Point', function() {
         return new Point(this.x / value, this.y / value);
     };
 
+    Point.prototype.equals = function(point) {
+        return this.x === point.x && this.y === point.y;
+    }
+
     return Point;
 })
