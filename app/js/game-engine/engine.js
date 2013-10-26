@@ -2,7 +2,7 @@
  * Created by city on 10/26/13.
  */
 
-angular.module('app').factory('GameEngine', function(Tank, Point, $window) {
+angular.module('app').factory('GameEngine', function(Tank, Point, $window, $rootScope) {
 
     function GameEngine(gameMap) {
         this.gameMap = gameMap;
@@ -24,7 +24,9 @@ angular.module('app').factory('GameEngine', function(Tank, Point, $window) {
         this.tanks.push(this.currentTank);
 
         this.intervalId = $window.setInterval(function() {
-            self.tick();
+            $rootScope.$apply(function() {
+                self.tick();
+            });
         }, GameEngine.TICK_INTERVAL);
     };
 
@@ -33,6 +35,10 @@ angular.module('app').factory('GameEngine', function(Tank, Point, $window) {
 
         _.each(this.tanks, function(tank) {
             var newPoint = tank.point.add(tank.speed.x, tank.speed.y);
+
+            tank.point.x = newPoint.x;
+            tank.point.y = newPoint.y;
+            return;
 
             if (!self.gameMap.getBlock(newPoint).canMoveThroughIt()) {
                 return;

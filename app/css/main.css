@@ -24,6 +24,12 @@
     background: #808080;
 }
 
+.tank {
+    width: 30px;
+    height: 30px;
+    background: red;
+    position: absolute;
+}
 
 
 
