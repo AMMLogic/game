@@ -99,7 +99,7 @@ angular.module('app').factory('GameEngine', function(CurrentTank, AiTank, Entity
                 return;
             }
 
-            var tank = self.isTankCollideTank(newPoint);
+            var tank = self.isTankCollideTank(newPoint, self.tanks.indexOf(self.currentTank.entity));
             if (tank !== null) {
                 self.tanks.splice(tank, 1);
                 self.bullets.splice(bulletIndex, 1);
