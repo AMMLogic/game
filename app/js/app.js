@@ -1,5 +1,5 @@
 
-angular.module('app', []).run(function(GameEngine, GameMap, $rootScope) {
+angular.module('app', ['ui.keypress']).run(function(GameEngine, GameMap, $rootScope) {
     var map = new GameMap();
 
     var engine = new GameEngine(map);
