@@ -20,14 +20,14 @@ angular.module('app').factory('GameMap', function(Block, Point) {
 
     GameMap.LEVEL1 = [
         [true, true, true, true, true, true, true, true, true, true],
-        [true,,true,true,,,,,,true],
-        [true,,,,,,,,,true],
-        [true,,,,,,,,,true],
-        [true,,,,,,,,,true],
-        [true,,,,,,,,,true],
-        [true,,,,,,,,,true],
-        [true,,,,,,,,,true],
-        [true,,,,,,,,,true],
+        [true,    , true, true,    ,     ,    ,    ,    , true],
+        [true,    , true,    ,    , true,    ,    ,    , true],
+        [true,    , true, true, true, true,    ,    ,    ,true],
+        [true,    ,    , true, true,    ,    ,    ,    ,true],
+        [true,    ,    ,    ,    ,    ,    ,    ,    ,true],
+        [true,    , true,    , true, true, true,    ,    ,true],
+        [true,    , true,    , true, true, true,    ,    ,true],
+        [true,    , true,    ,    ,    ,    ,    ,    ,true],
         [true, true, true, true, true, true, true, true, true, true]
     ];
 
