@@ -19,10 +19,10 @@ angular.module('app').factory('Entity', function(Point, Block) {
     Entity.SIZE = Block.SIZE;
 
     Entity.DIRECTION = {
-        WEST: 0,
-        EAST: 1,
-        NORTH: 2,
-        SOUTH: 3
+        WEST: 'west',
+        EAST: 'east',
+        NORTH: '',
+        SOUTH: 'south'
     };
 
     Entity.prototype.changeSpeed = function(x, y) {
