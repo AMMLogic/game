@@ -1,4 +1,4 @@
-<div ng-controller="KeyPressCtrl">
+<div id="keypress-wrapper" ng-controller="KeyPressCtrl">
     <div
             ui-keypress="{65:'keypressCallbackLeft($event)',
              83:'keypressCallbackRight($event)',
@@ -14,7 +14,7 @@
              68: 'keypressCallbackUpDown($event)'
              }"
 
-            ng-include="'partials/map.html'" tabindex="0">
+            ng-include="'partials/map.html'" tabindex="0" x-focus>
 </div>
 
 </div>
