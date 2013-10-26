@@ -1,17 +1,19 @@
 <div id="keypress-wrapper" ng-controller="KeyPressCtrl">
     <div
-            ui-keypress="{65:'keypressCallbackLeft($event)',
-             83:'keypressCallbackRight($event)',
-             87:'keypressCallbackUp($event)',
+            ui-keydown="{
+             37:'keypressCallbackLeft($event)',
+             39:'keypressCallbackRight($event)',
+             38:'keypressCallbackUp($event)',
              32: 'keypressCallbackSpace($event)',
-             68: 'keypressCallbackDown($event)'
+             40: 'keypressCallbackDown($event)'
              }"
 
-            ui-keyup="{65:'keypressCallbackUpLeft($event)',
-             83:'keypressCallbackUpRight($event)',
-             87:'keypressCallbackUpUp($event)',
+            ui-keyup="{
+             37:'keypressCallbackUpLeft($event)',
+             39:'keypressCallbackUpRight($event)',
+             38:'keypressCallbackUpUp($event)',
              32: 'keypressCallbackUpSpace($event)',
-             68: 'keypressCallbackUpDown($event)'
+             40: 'keypressCallbackUpDown($event)'
              }"
 
             ng-include="'partials/map.html'" tabindex="0" x-focus>

@@ -66,10 +66,10 @@ angular.module('app').factory('CurrentTank', function(Entity, Bullet, Point) {
                 this.entity.changeSpeed(0, -1);
                 break;
             case false +'|'+ false +'|'+ true +'|'+ false:
-                this.entity.changeSpeed(0, 1);
+                this.entity.changeSpeed(1, 0);
                 break;
             case false +'|'+ false +'|'+ false +'|'+ true:
-                this.entity.changeSpeed(1, 0);
+                this.entity.changeSpeed(0, 1);
                 break;
         }
 
