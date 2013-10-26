@@ -5,7 +5,7 @@
  * Time: 11:34
  */
 
-angular.module('app').controller('MapCtrl', function($scope, GameMap) {
+angular.module('app').controller('MapCtrl', function($scope) {
     var map = $scope.gameEngine.gameMap;
     $scope.blockRows = map.getBlocks();
 });

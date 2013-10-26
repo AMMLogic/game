@@ -8,5 +8,17 @@ angular.module('app').factory('Point', function() {
         this.y = y;
     }
 
+    Point.prototype.add = function(x, y) {
+        return new Point(this.x + x, this.y + y);
+    };
+
+    Point.prototype.mul = function(value) {
+        return new Point(this.x * value, this.y * value);
+    };
+
+    Point.prototype.div = function(value) {
+        return new Point(this.x / value, this.y / value);
+    };
+
     return Point;
 })
