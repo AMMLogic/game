@@ -12,6 +12,8 @@ angular.module('app').factory('CurrentTank', function(Entity) {
         this.entity = entity;
 
         this.keyMap = keyMap;
+
+        this.entity.class = 'ourTank';
     }
 
     CurrentTank.prototype.tick = function() {

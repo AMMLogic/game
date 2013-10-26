@@ -9,6 +9,8 @@ angular.module('app').factory('AiTank', function(Entity) {
         }
 
         this.entity = entity;
+
+        this.entity.class = 'enemyTank';
     }
 
     AiTank.prototype.tick = function() {

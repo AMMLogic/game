@@ -5,7 +5,7 @@
    ========================================================================== */
 #map {
     /*margin: 10px;*/
-    background: beige;
+    background: black;
     width: 300px;
     height: 300px;
 }
@@ -21,13 +21,41 @@
 }
 
 .stone {
-    background: #808080;
+    background-image: url('img/stone.png');
+    background-repeat: no-repeat;
 }
 
 .tank {
+    background-repeat: no-repeat;
     width: 30px;
     height: 30px;
-    background: red;
+    position: absolute;
+}
+
+.ourTank {
+    background-image: url('img/tank.png');
+}
+
+.enemyTank {
+    background-image: url('img/tank_foe.png');
+}
+
+.east {
+    -webkit-transform: rotate(90deg);
+}
+
+.south {
+    -webkit-transform: rotate(180deg);
+}
+
+.west {
+    -webkit-transform: rotate(270deg);
+}
+
+.bullet {
+    width: 5px;
+    height: 5px;
+    background: black;
     position: absolute;
 }
 

@@ -1,3 +1,5 @@
 <div id="tanks" ng-controller="TanksCtrl">
-    <div ng-repeat="tank in tanks" class="tank" ng-style="{left: tank.point.x, top: tank.point.y}"></div>
+    <div ng-repeat="tank in tanks" class="tank"
+         ng-style="{left: tank.point.x, top: tank.point.y}"
+            ng-class="tank.class"></div>
 </div>
