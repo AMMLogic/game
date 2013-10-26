@@ -2,7 +2,7 @@
  * Created by city on 10/26/13.
  */
 
-angular.module('app').factory('GameEngine', function(Tank, Point, $window, $rootScope) {
+angular.module('app').factory('GameEngine', function(Entity, Point, $window, $rootScope) {
 
     function GameEngine(gameMap) {
         this.gameMap = gameMap;
@@ -22,13 +22,13 @@ angular.module('app').factory('GameEngine', function(Tank, Point, $window, $root
     GameEngine.prototype.init = function() {
         var self = this;
 
-        this.currentTank = new Tank( new Point(30, 90) );
+        this.currentTank = new Entity( new Point(30, 90) );
         this.currentTank.speed.x = 1;
 
         this.tanks.push(this.currentTank);
-        this.tanks.push(new Tank( new Point(120, 90) ));
-        this.tanks.push(new Tank( new Point(150, 120) ));
-        this.tanks.push(new Tank( new Point(80, 90) ));
+        this.tanks.push(new Entity( new Point(120, 90) ));
+        this.tanks.push(new Entity( new Point(150, 120) ));
+        this.tanks.push(new Entity( new Point(80, 90) ));
 
         this.intervalId = $window.setInterval(function() {
             $rootScope.$apply(function() {
@@ -55,15 +55,15 @@ angular.module('app').factory('GameEngine', function(Tank, Point, $window, $root
                 return;
             }
 
-            if (self.isTankCollideTank(newPoint.add(Tank.SIZE - 1, 0), tankIndex)) {
+            if (self.isTankCollideTank(newPoint.add(Entity.SIZE - 1, 0), tankIndex)) {
                 return;
             }
 
-            if (self.isTankCollideTank(newPoint.add(0, Tank.SIZE - 1), tankIndex)) {
+            if (self.isTankCollideTank(newPoint.add(0, Entity.SIZE - 1), tankIndex)) {
                 return;
             }
 
-            if (self.isTankCollideTank(newPoint.add(Tank.SIZE - 1, Tank.SIZE - 1), tankIndex)) {
+            if (self.isTankCollideTank(newPoint.add(Entity.SIZE - 1, Entity.SIZE - 1), tankIndex)) {
                 return;
             }
 
@@ -77,15 +77,15 @@ angular.module('app').factory('GameEngine', function(Tank, Point, $window, $root
             return true;
         }
 
-        if (!this.gameMap.getBlock(point.add(Tank.SIZE - 1, 0)).canMoveThroughIt()) {
+        if (!this.gameMap.getBlock(point.add(Entity.SIZE - 1, 0)).canMoveThroughIt()) {
             return true;
         }
 
-        if (!this.gameMap.getBlock(point.add(0, Tank.SIZE - 1)).canMoveThroughIt()) {
+        if (!this.gameMap.getBlock(point.add(0, Entity.SIZE - 1)).canMoveThroughIt()) {
             return true;
         }
 
-        if (!this.gameMap.getBlock(point.add(Tank.SIZE - 1, Tank.SIZE - 1)).canMoveThroughIt()) {
+        if (!this.gameMap.getBlock(point.add(Entity.SIZE - 1, Entity.SIZE - 1)).canMoveThroughIt()) {
             return true;
         }
 
@@ -103,7 +103,7 @@ angular.module('app').factory('GameEngine', function(Tank, Point, $window, $root
             }
 
             var topLeft = tank.point;
-            var bottomRight = tank.point.add(Tank.SIZE - 1, Tank.SIZE - 1);
+            var bottomRight = tank.point.add(Entity.SIZE - 1, Entity.SIZE - 1);
 
             if (point.x < topLeft.x || point.y < topLeft.y || point.x > bottomRight.x || point.y > bottomRight.y) {
                 return;
