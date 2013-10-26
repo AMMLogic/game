@@ -4,12 +4,15 @@
 
 angular.module('app').factory('Block', function() {
 
-    function Block() {
-
+    function Block(point, isStone) {
+        this.point = point;
+        this.isStone = isStone;
     }
 
-    Block.prototype.canMoveThoughIt = function() {
-        return true;
+    Block.SIZE = 30;
+
+    Block.prototype.canMoveThroughIt = function() {
+        return !this.isStone;
     };
 
     return Block;

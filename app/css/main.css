@@ -4,7 +4,7 @@
    Author's custom styles
    ========================================================================== */
 #map {
-    margin: 10px;
+    /*margin: 10px;*/
     background: beige;
     width: 300px;
     height: 300px;
@@ -15,10 +15,9 @@
 }
 
 .block {
-    margin: 1px;
     float: left;
-    width: 10px;
-    height: 10px;
+    width: 30px;
+    height: 30px;
 }
 
 .stone {
