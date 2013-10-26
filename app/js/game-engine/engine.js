@@ -2,7 +2,7 @@
  * Created by city on 10/26/13.
  */
 
-angular.module('app').factory('GameEngine', function(Entity, Point, $window, $rootScope) {
+angular.module('app').factory('GameEngine', function(Entity, Point, KeyMap ,$window, $rootScope) {
 
     function GameEngine(gameMap) {
         this.gameMap = gameMap;
@@ -13,6 +13,8 @@ angular.module('app').factory('GameEngine', function(Entity, Point, $window, $ro
         this.currentTank = null;
 
         this.intervalId = null;
+
+        this.keyMap = new KeyMap;
 
         this.tickObjects = [];
     }
