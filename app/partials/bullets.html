@@ -1,0 +1,5 @@
+<div id="bullets" ng-controller="BulletsCtrl">
+    <div ng-repeat="bullet in bullets" class="bullet"
+         ng-style="{left: bullet.entity.point.x, top: bullet.entity.point.y}"
+         ng-class="[bullet.entity.direction]"></div>
+</div>

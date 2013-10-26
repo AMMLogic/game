@@ -90,6 +90,19 @@ angular.module('app').factory('GameEngine', function(CurrentTank, AiTank, Entity
             tank.point.y = newPoint.y;
         });
 
+        _.each(this.bullets, function(bullet, bulletIndex) {
+            var entity = bullet.entity;
+            var newPoint = entity.point.add(entity.speed.x, entity.speed.y);
+
+            if (!self.gameMap.getBlock(newPoint).canMoveThroughIt()) {
+                self.bullets.splice(bulletIndex, 1);
+                return;
+            }
+
+            entity.point.x = newPoint.x;
+            entity.point.y = newPoint.y;
+        });
+
         _.each(this.tickObjects, function(obj) {
             obj.tick();
         })

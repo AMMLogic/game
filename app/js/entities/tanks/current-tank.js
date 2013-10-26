@@ -37,7 +37,7 @@ angular.module('app').factory('CurrentTank', function(Entity, Bullet, Point) {
             bulletSpeed.y = Bullet.SPEED;
         }
 
-        var entity = new Entity(this.entity.point.add(bulletOffset));
+        var entity = new Entity(this.entity.point.add(bulletOffset.x, bulletOffset.y));
         var bullet = new Bullet(entity, bulletSpeed);
 
         this.gameEngine.bullets.push(bullet);
