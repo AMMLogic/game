@@ -2,7 +2,7 @@
  * Created by city on 10/26/13.
  */
 
-angular.module('app').factory('GameEngine', function(Entity, Point, KeyMap ,$window, $rootScope) {
+angular.module('app').factory('GameEngine', function(CurrentTank, AiTank, Entity, Point, KeyMap, $window, $rootScope) {
 
     function GameEngine(gameMap) {
         this.gameMap = gameMap;
@@ -11,6 +11,7 @@ angular.module('app').factory('GameEngine', function(Entity, Point, KeyMap ,$win
         this.bullets = [];
 
         this.currentTank = null;
+        this.aiTanks = [];
 
         this.intervalId = null;
 
@@ -24,13 +25,30 @@ angular.module('app').factory('GameEngine', function(Entity, Point, KeyMap ,$win
     GameEngine.prototype.init = function() {
         var self = this;
 
-        this.currentTank = new Entity( new Point(30, 90) );
-        this.currentTank.speed.x = 1;
+        var entity;
 
-        this.tanks.push(this.currentTank);
-        this.tanks.push(new Entity( new Point(120, 90) ));
-        this.tanks.push(new Entity( new Point(150, 120) ));
-        this.tanks.push(new Entity( new Point(80, 90) ));
+        entity = new Entity( new Point(30, 90) );
+        entity.speed.x = 1;
+        entity.direction = Entity.DIRECTION.EAST;
+
+        this.currentTank = new CurrentTank(entity);
+
+
+        entity = new Entity( new Point(120, 90) );
+        this.aiTanks.push(new AiTank(entity));
+        entity = new Entity( new Point(150, 120) );
+        this.aiTanks.push(new AiTank(entity));
+        entity = new Entity( new Point(80, 90) );
+        this.aiTanks.push(new AiTank(entity));
+
+
+        this.tickObjects.push(this.currentTank);
+        this.tanks.push(this.currentTank.entity);
+        _.each(this.aiTanks, function(aiTank) {
+            self.tickObjects.push(aiTank);
+            self.tanks.push(aiTank.entity);
+        });
+
 
         this.intervalId = $window.setInterval(function() {
             $rootScope.$apply(function() {
