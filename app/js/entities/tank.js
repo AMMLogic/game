@@ -11,7 +11,7 @@ angular.module('app').factory('Tank', function(Point, Block) {
 
         this.point = point;
 
-        this.speed = new Point(1, 0.5);
+        this.speed = new Point(0, 1);
     }
 
     Tank.SIZE = Block.SIZE;
