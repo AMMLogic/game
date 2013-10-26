@@ -99,6 +99,13 @@ angular.module('app').factory('GameEngine', function(CurrentTank, AiTank, Entity
                 return;
             }
 
+            var tank = self.isTankCollideTank(newPoint);
+            if (tank) {
+                self.tanks.splice(tank, 1);
+                self.bullets.splice(bulletIndex, 1);
+                return;
+            }
+
             entity.point.x = newPoint.x;
             entity.point.y = newPoint.y;
         });
@@ -131,7 +138,7 @@ angular.module('app').factory('GameEngine', function(CurrentTank, AiTank, Entity
     GameEngine.prototype.isTankCollideTank = function(point, skipTankIndex) {
         var self = this;
 
-        var result = false;
+        var result = null;
 
         _.each(self.tanks, function(tank, tankIndex) {
             if (tankIndex === skipTankIndex) {
@@ -145,7 +152,7 @@ angular.module('app').factory('GameEngine', function(CurrentTank, AiTank, Entity
                 return;
             }
 
-            result = true;
+            result = tankIndex;
         });
 
         return result;
