@@ -53,14 +53,17 @@
 
 .east {
     -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
 }
 
 .south {
     -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
 }
 
 .west {
     -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
 }
 
 .tank+.explosed{
