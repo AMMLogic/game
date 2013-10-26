@@ -33,11 +33,11 @@ angular.module('app').factory('GameEngine', function(CurrentTank, AiTank, Entity
         this.currentTank = new CurrentTank(entity, this.keyMap, this);
 
 
-        entity = new Entity( new Point(120, 90) );
+        entity = new Entity( new Point(240, 90) );
         this.aiTanks.push(new AiTank(entity));
         entity = new Entity( new Point(150, 120) );
         this.aiTanks.push(new AiTank(entity));
-        entity = new Entity( new Point(80, 90) );
+        entity = new Entity( new Point(90, 180) );
         this.aiTanks.push(new AiTank(entity));
 
 
