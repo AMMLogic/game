@@ -40,7 +40,7 @@ angular.module('app').factory('CurrentTank', function(Entity, Bullet) {
     };
 
     CurrentTank.prototype.tick = function() {
-        CurrentTank.prototype.updateSpeed();
+        this.updateSpeed();
     };
 
     CurrentTank.prototype.updateSpeed = function() {
