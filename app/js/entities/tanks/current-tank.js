@@ -56,18 +56,16 @@ angular.module('app').factory('CurrentTank', function(Entity, Bullet) {
                 break;
             case false +'|'+ true +'|'+ false +'|'+ false:
                 this.entity.speed.x = 0;
-                this.entity.speed.y = 1;
+                this.entity.speed.y = -1;
                 break;
             case false +'|'+ false +'|'+ true +'|'+ false:
+                this.entity.speed.x = 0;
+                this.entity.speed.y = 1;
+                break;
+            case false +'|'+ false +'|'+ false +'|'+ true:
                 this.entity.speed.x = 1;
                 this.entity.speed.y = 0;
                 break;
-            case false +'|'+ false +'|'+ false +'|'+ true:
-                this.entity.speed.x = 0;
-                this.entity.speed.y = -1;
-                break;
-
-
         }
 
     };
