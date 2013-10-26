@@ -27,6 +27,8 @@ angular.module('app').factory('GameEngine', function(Tank, Point, $window, $root
 
         this.tanks.push(this.currentTank);
         this.tanks.push(new Tank( new Point(120, 90) ));
+        this.tanks.push(new Tank( new Point(150, 120) ));
+        this.tanks.push(new Tank( new Point(80, 90) ));
 
         this.intervalId = $window.setInterval(function() {
             $rootScope.$apply(function() {
