@@ -2,9 +2,9 @@
  * Created by city on 10/26/13.
  */
 
-angular.module('app').factory('CurrentTank', function(Entity, Bullet) {
+angular.module('app').factory('CurrentTank', function(Entity, Bullet, Point) {
 
-    function CurrentTank(entity, keyMap) {
+    function CurrentTank(entity, keyMap, gameEngine) {
         if (!(entity instanceof Entity)) {
             throw new TypeError('not a tank');
         }
@@ -14,6 +14,8 @@ angular.module('app').factory('CurrentTank', function(Entity, Bullet) {
         this.keyMap = keyMap;
 
         this.entity.class = 'ourTank';
+
+        this.gameEngine = gameEngine;
     }
 
     CurrentTank.prototype.fire = function() {
@@ -35,8 +37,10 @@ angular.module('app').factory('CurrentTank', function(Entity, Bullet) {
             bulletSpeed.y = Bullet.SPEED;
         }
 
-        var bullet = new Bullet(new Entity(this.entity.point.add(bulletOffset)));
+        var entity = new Entity(this.entity.point.add(bulletOffset));
+        var bullet = new Bullet(entity, bulletSpeed);
 
+        this.gameEngine.bullets.push(bullet);
     };
 
     CurrentTank.prototype.tick = function() {
