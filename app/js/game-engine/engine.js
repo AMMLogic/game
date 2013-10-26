@@ -28,8 +28,7 @@ angular.module('app').factory('GameEngine', function(CurrentTank, AiTank, Entity
         var entity;
 
         entity = new Entity( new Point(30, 90) );
-        entity.speed.x = 1;
-        entity.direction = Entity.DIRECTION.EAST;
+        entity.changeSpeed(1, 0);
 
         this.currentTank = new CurrentTank(entity);
 

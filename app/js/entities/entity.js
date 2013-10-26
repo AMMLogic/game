@@ -26,6 +26,23 @@ angular.module('app').factory('Entity', function(Point, Block) {
     };
 
     Entity.prototype.changeSpeed = function(x, y) {
+        if (x && y) {
+            throw new Error('tank is moving in more than one direction');
+        }
+
+        if (x > 0) {
+            this.direction = Entity.DIRECTION.EAST;
+        }
+        if (x < 0) {
+            this.direction = Entity.DIRECTION.WEST;
+        }
+        if (y > 0) {
+            this.direction = Entity.DIRECTION.SOUTH;
+        }
+        if (y < 0) {
+            this.direction = Entity.DIRECTION.NORTH;
+        }
+
         this.speed.x = x;
         this.speed.y = y;
     }
