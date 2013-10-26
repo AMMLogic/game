@@ -6,16 +6,12 @@
  */
 
 angular.module('app').factory('Bullet', function(Point) {
-    function Bullet(point) {
-        this.point = point;
-        this.isHit = false;
+    function Bullet(entity, speed) {
+        this.entity = entity;
+        this.entity.changeSpeed(speed.x, speed.y);
     }
 
-    Bullet.size = 5;
-
-    Bullet.prototype.setIsHit = function(isHit) {
-        this.isHit = isHit;
-    };
+    Bullet.SPEED = 5;
 
     return Bullet;
 });
